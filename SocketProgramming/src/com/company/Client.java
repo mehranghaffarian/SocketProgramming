@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) {
-        try (Socket socket = new Socket("192.168.0.111", 5000);
+        try (Socket socket = new Socket("127.0.0.1", 5000);
              DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
              DataInputStream dis = new DataInputStream(socket.getInputStream())){
             System.out.println("connected");
