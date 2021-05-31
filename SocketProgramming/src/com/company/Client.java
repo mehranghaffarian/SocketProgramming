@@ -5,7 +5,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
-
+/**
+ * a class for clients
+ * @author mehra ghaffarian
+ * */
 public class Client {
 
     public static void main(String[] args) {
@@ -20,6 +23,7 @@ public class Client {
                 dos.writeUTF(str);
                 str = scan.next();
             }
+            //avoiding writing the <over> word
             if(str.equalsIgnoreCase("over"))
                 dos.writeUTF(str);
 

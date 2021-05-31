@@ -3,7 +3,10 @@ package com.company;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
-
+/**
+ *a class for handling the clients orders
+ * @author mehrabhgaffarian
+ * */
 public class ClientThread extends Thread{
     private Socket socket;
     private int number;
@@ -23,6 +26,7 @@ public class ClientThread extends Thread{
         while(continueLoop) {
             String check =  dis.readUTF();
 
+            //checking the ending condition
             if(!check.equalsIgnoreCase("over"))
                 str = str.concat(check + " ");
             else {
@@ -30,6 +34,7 @@ public class ClientThread extends Thread{
                 dos.writeUTF(str);
             }
         }
+        //printing the whole messages
         System.out.println("The whole messages for client " + number + " is: " + str);
 
         dos.close();
