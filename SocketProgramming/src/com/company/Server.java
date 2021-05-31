@@ -12,12 +12,13 @@ import java.util.concurrent.Executors;
 public class Server {
 
     public static void main(String[] args){
+        //handling the probable exceptions
         try (ServerSocket serverSocket = new ServerSocket(5000)){
             ExecutorService es = Executors.newCachedThreadPool();
-            int count = 1;
+            int count = 0;
 
             //accepts 3 clients
-            while(count++ <= 3) {
+            while(count++ <= 2) {
                 System.out.println("Waiting for client" + count + "...");
                 Socket socket = serverSocket.accept();
                 System.out.println("Client " + count + " accepted.\n");

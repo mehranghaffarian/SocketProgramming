@@ -16,8 +16,12 @@ public class ClientThread extends Thread{
         this.number = number;
     }
 
+    /**
+     * handles the clients orders
+     * */
     @Override
     public void run() {
+        //handling the probable exceptions
         try(DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
         DataInputStream dis = new DataInputStream(socket.getInputStream());){
         String str = "";
@@ -29,10 +33,10 @@ public class ClientThread extends Thread{
             //checking the ending condition
             if(!check.equalsIgnoreCase("over"))
                 str = str.concat(check + " ");
-            else {
+            else
                 continueLoop = false;
-                dos.writeUTF(str);
-            }
+
+            dos.writeUTF(str);
         }
         //printing the whole messages
         System.out.println("The whole messages for client " + number + " is: " + str);

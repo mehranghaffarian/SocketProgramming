@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Client {
 
     public static void main(String[] args) {
+        //handling the probable exceptions
         try (Socket socket = new Socket("127.0.0.1", 5000);
              DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
              DataInputStream dis = new DataInputStream(socket.getInputStream())){
@@ -20,16 +21,15 @@ public class Client {
             String str = "", finalInput = "";
 
             while(!str.equalsIgnoreCase("over")){
+                str = scan.nextLine();
                 dos.writeUTF(str);
-                str = scan.next();
+                System.out.println("Server: " + dis.readUTF());
             }
             //avoiding writing the <over> word
             if(str.equalsIgnoreCase("over"))
                 dos.writeUTF(str);
 
-            finalInput = dis.readUTF();
             socket.close();
-            System.out.println("Whole messages are: " + finalInput);
         } catch (IOException e) {
             e.printStackTrace();
         }
